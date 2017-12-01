@@ -65,15 +65,15 @@ def plotGraph():
     import numpy as np
     import json
     import os
-    with open('graph_p.pickle', 'rb') as f:
+    with open('model/graph_p.pickle', 'rb') as f:
         g = pickle.load(f)
-    ts = pickle.load(open('ts.pickle', 'rb'))
+    ts = pickle.load(open('model/ts.pickle', 'rb'))
     plt.xlabel('Timestamp')
     plt.ylabel('Q_max')
     plt.plot(g['Q_max'])
     plt.savefig('graph/Fig'+str(ts['t'])+'.png')
     l = {'avgQ': float(np.mean(g['Q_max']))}
-    with open('avgQMax','a') as f:
+    with open('model/avgQMax','a') as f:
         json.dump(l, f)
         f.write(os.linesep)
 
@@ -83,9 +83,9 @@ def saveProgress(t, model, eps):
     tss['eps'] = eps
     print("Now we save model")
     model.save_weights("model.h5", overwrite=True)
-    with open("ts.pickle", "wb") as fp:
+    with open("model/ts.pickle", "wb") as fp:
         pickle.dump(tss,fp)
-    with open("model.json", "w") as outfile:
+    with open("model/model.json", "w") as outfile:
         json.dump(model.to_json(), outfile)
 
 def trainNetwork(model,args):
@@ -110,8 +110,8 @@ def trainNetwork(model,args):
         model.compile(loss='mse',optimizer=adam)  
     else:                      
         OBSERVE = 3200 
-        ts = pickle.load(open('ts.pickle', 'rb'))
-        data = cPickle.load(open('xxx.dmp', 'r'))  
+        ts = pickle.load(open('model/ts.pickle', 'rb'))
+        data = cPickle.load(open('model/xxx.dmp', 'r'))  
         model.load_weights("model.h5")
         temp = t = ts['t']
         epsilon = ts['eps']
@@ -169,7 +169,7 @@ def trainNetwork(model,args):
         graph_p['reward'].append(r_t)
         graph_p['Q_max'].append(np.max(Q_sa))
         graph_p['loss'].append(loss)
-        with open('graph_p.pickle','wb') as f:
+        with open('model/graph_p.pickle','wb') as f:
             pickle.dump(graph_p,f)
             print("Dumped -----> graph_p.pickle")
         

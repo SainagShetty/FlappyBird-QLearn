@@ -4,12 +4,11 @@ def refresh():
     tss = {}
     tss['t'] = 0
     tss['D'] = deque()
-    out = open('xxx.dmp', 'w')
+    out = open('model/xxx.dmp', 'w')
     cPickle.dump(tss, out)
     out.close()
 
 def buildmodel():
-    print("Now we build the model")
     model = Sequential()
     model.add(Convolution2D(32, 8, 8, subsample=(4, 4), border_mode='same',input_shape=(img_rows,img_cols,img_channels)))  #80*80*4
     model.add(Activation('relu'))
@@ -24,7 +23,6 @@ def buildmodel():
     
     adam = Adam(lr=LEARNING_RATE)
     model.compile(loss='mse',optimizer=adam)
-    print("We finish building the model")
     return model
 
 refresh()

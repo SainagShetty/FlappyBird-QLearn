@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import json
 
-with open('avgQMax') as f:
+with open('model/avgQMax') as f:
 	my_list = [json.loads(line) for line in f]
 
 valsAvg = []
@@ -11,4 +11,4 @@ for i in my_list:
 plt.xlabel('Epochs')
 plt.ylabel('Avg QMax')
 plt.plot(valsAvg)
-plt.show()
+plt.savefig('graph/avgQMax.png')
