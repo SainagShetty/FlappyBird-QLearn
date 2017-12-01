@@ -3,6 +3,7 @@ from __future__ import print_function
 
 from collections import deque
 
+import cPickle
 import pickle
 import json
 
@@ -28,7 +29,7 @@ import random
 
 import sys
 sys.path.append("game/")
-import wrapped_flappy_bird as game
+import flappy_bird_gameplay as game
 
 ACTIONS = 2 #VALID ACTIONS; FLAP, NO_FLAP
 EPOCH_SIZE = 5000 #THE TIMESTAMP SIZE OF A EPOCH
@@ -115,7 +116,7 @@ def trainNetwork(model,args):
         model.load_weights("model.h5")
         temp = t = ts['t']
         epsilon = ts['eps']
-        prev_obs = data['prev_obs']
+        prev_obs = data['D']
 
     graph_p = {'reward':[],'Q_max':[],'loss':[]}
     while (t < temp + EPOCH_SIZE):

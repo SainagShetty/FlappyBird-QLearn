@@ -2,7 +2,7 @@ import numpy as np
 import sys
 import random
 import pygame
-import flappy_bird_utils
+import game_setup
 import pygame.surfarray as surfarray
 from pygame.locals import *
 from itertools import cycle
@@ -16,7 +16,7 @@ FPSCLOCK = pygame.time.Clock()
 SCREEN = pygame.display.set_mode((S_WIDTH, S_HEIGHT))
 pygame.display.set_caption('Flappy Bird')
 
-IMAGES, HITMASKS = flappy_bird_utils.load()
+IMAGES, HITMASKS = game_setup.load()
 PIPE_GAP = 100 
 BASEY = S_HEIGHT * 0.79
 
