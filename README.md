@@ -12,6 +12,9 @@ playFlappy.py -> This is the main file, which is used to train and play the flap
 plotAvgQMax.py -> Plot the Avg QMax graph till the last epoch
 refresh.py -> It refreshes the whole model and start from 0.
 
+Also Download https://drive.google.com/open?id=1dUE20LMf6o4OoUtXNIiKRd3L8pRsUwz1 and keep it in the folder
+It contains training model data.
+
 To Run the program. 
 We need Keras or Tensorflow as backend for training Convolution Neural Network
 Step 1: Download and Install Anaconda (Python 2.7 version)
